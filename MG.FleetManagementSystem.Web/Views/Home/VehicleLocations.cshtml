@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MG.FleetManagementSystem.Web.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Vehicle Locations";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Vehicle Locations</h1>
+    <div id="vehicleMap" style="height: 500px;"></div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('vehicleMap').setView([26.8206, 30.8025], 6); // Centered on Egypt
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var vehicles = @Html.Raw(Json.Serialize(Model.Select(v => new
+            {
+                v.Id,
+                v.LicensePlate,
+                v.CurrentLatitude,
+                v.CurrentLongitude,
+                v.MapInfo
+            })));
+
+        vehicles.forEach(function (vehicle) {
+            L.marker([vehicle.currentLatitude, vehicle.currentLongitude])
+                .addTo(map)
+                .bindPopup(vehicle.mapInfo);
+        });
+    </script>
+}

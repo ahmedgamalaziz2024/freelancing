@@ -1,0 +1,45 @@
+﻿@model List<MaintenanceOrder>
+
+@{
+    ViewData["Title"] = "Maintenance Orders";
+}
+
+<h1>Maintenance Orders</h1>
+
+<p>
+    <a asp-action="CreateProactive" class="btn btn-primary">Create Proactive Orders</a>
+    <a asp-action="CreateReactive" class="btn btn-secondary">Create Reactive Order</a>
+    <a asp-action="Overdue" class="btn btn-warning">View Overdue Orders</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vehicle</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>Est. Completion</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.VehicleId</td>
+                <td>@order.Type</td>
+                <td>@order.Status</td>
+                <td>@order.StartDate.ToShortDateString()</td>
+                <td>@order.EstimatedCompletionDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Complete" asp-route-id="@order.Id" class="btn btn-success btn-sm">Complete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

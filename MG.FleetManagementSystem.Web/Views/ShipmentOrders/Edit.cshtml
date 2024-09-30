@@ -1,0 +1,91 @@
+﻿@model MG.FleetManagementSystem.Web.Models.ShipmentOrder
+
+@{
+    ViewData["Title"] = "Edit Shipment Order";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Edit Shipment Order</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CustomerId" class="form-label">Customer</label>
+                        <select asp-for="CustomerId" class="form-select" asp-items="ViewBag.Customers">
+                            <option value="">-- Select Customer --</option>
+                        </select>
+                        <span asp-validation-for="CustomerId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="VehicleId" class="form-label">Vehicle</label>
+                        <select asp-for="VehicleId" class="form-select" asp-items="ViewBag.Vehicles">
+                            <option value="">-- Select Vehicle --</option>
+                        </select>
+                        <span asp-validation-for="VehicleId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="DriverId" class="form-label">Driver</label>
+                        <select asp-for="DriverId" class="form-select" asp-items="ViewBag.Drivers">
+                            <option value="">-- Select Driver --</option>
+                        </select>
+                        <span asp-validation-for="DriverId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="RouteId" class="form-label">Route</label>
+                        <select asp-for="RouteId" class="form-select" asp-items="ViewBag.Routes">
+                            <option value="">-- Select Route --</option>
+                        </select>
+                        <span asp-validation-for="RouteId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="StartDate" class="form-label"></label>
+                        <input asp-for="StartDate" class="form-control" type="datetime-local" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="EndDate" class="form-label"></label>
+                        <input asp-for="EndDate" class="form-control" type="datetime-local" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Status" class="form-label"></label>
+                        <select asp-for="Status" class="form-select">
+                            <option value="planned">Planned</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="executed">Executed</option>
+                            <option value="in_transit">In Transit</option>
+                            <option value="awaiting_return">Awaiting Return</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save</button>
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

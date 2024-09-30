@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid mt-4">
+    <h1 class="display-4 mb-4">GM - Fleet Management Dashboard</h1>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card total-vehicles">
+                <div class="card-body">
+                    <h5 class="card-title">Total Vehicles</h5>
+                    <p class="card-text">@ViewBag.TotalVehicles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card available-vehicles">
+                <div class="card-body">
+                    <h5 class="card-title">Available Vehicles</h5>
+                    <p class="card-text">@ViewBag.AvailableVehicles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card vehicles-maintenance">
+                <div class="card-body">
+                    <h5 class="card-title">Vehicles in Maintenance</h5>
+                    <p class="card-text">@ViewBag.VehiclesInMaintenance</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card active-shipments">
+                <div class="card-body">
+                    <h5 class="card-title">Active Shipments</h5>
+                    <p class="card-text">@ViewBag.ActiveShipments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card completed-shipments">
+                <div class="card-body">
+                    <h5 class="card-title">Completed Shipments</h5>
+                    <p class="card-text">@ViewBag.CompletedShipments</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card pending-maintenance">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Maintenance</h5>
+                    <p class="card-text">@ViewBag.PendingMaintenance</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card ongoing-maintenance">
+                <div class="card-body">
+                    <h5 class="card-title">Ongoing Maintenance</h5>
+                    <p class="card-text">@ViewBag.OngoingMaintenance</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card total-customers">
+                <div class="card-body">
+                    <h5 class="card-title">Total Customers</h5>
+                    <p class="card-text">@ViewBag.CustomersCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card total-drivers">
+                <div class="card-body">
+                    <h5 class="card-title">Total Drivers</h5>
+                    <p class="card-text">@ViewBag.DriversCount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card total-revenue">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <p class="card-text">$@ViewBag.TotalRevenue.ToString("N2")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card avg-shipment-price">
+                <div class="card-body">
+                    <h5 class="card-title">Avg. Shipment Price</h5>
+                    <p class="card-text">$@ViewBag.AverageShipmentPrice.ToString("N2")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card overdue-maintenance">
+                <div class="card-body">
+                    <h5 class="card-title">Overdue Maintenance</h5>
+                    <p class="card-text">@ViewBag.OverdueMaintenanceCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

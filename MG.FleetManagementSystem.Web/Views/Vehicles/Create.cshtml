@@ -1,0 +1,73 @@
+﻿@model MG.FleetManagementSystem.Web.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Create Vehicle";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Create Vehicle</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Type" class="form-label"></label>
+                        <input asp-for="Type" class="form-control" placeholder="Enter vehicle type" />
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LicensePlate" class="form-label"></label>
+                        <input asp-for="LicensePlate" class="form-control" placeholder="Enter license plate" />
+                        <span asp-validation-for="LicensePlate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="OdometerReading" class="form-label"></label>
+                        <input asp-for="OdometerReading" class="form-control" placeholder="Enter odometer reading" />
+                        <span asp-validation-for="OdometerReading" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LicenseExpiryDate" class="form-label"></label>
+                        <input asp-for="LicenseExpiryDate" class="form-control" type="date" />
+                        <span asp-validation-for="LicenseExpiryDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Weight" class="form-label"></label>
+                        <input asp-for="Weight" class="form-control" placeholder="Enter weight" />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Volume" class="form-label"></label>
+                        <input asp-for="Volume" class="form-control" placeholder="Enter volume" />
+                        <span asp-validation-for="Volume" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label"></label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="">Select status</option>
+                        <option value="available">Available</option>
+                        <option value="occupied">Occupied</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Create</button>
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

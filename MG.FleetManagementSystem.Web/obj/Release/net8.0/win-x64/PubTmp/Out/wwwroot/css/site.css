@@ -1,0 +1,287 @@
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #1cc88a;
+    --background-color: #f8f9fc;
+    --text-color: #5a5c69;
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .nav-link:hover {
+        transform: translateY(-2px);
+    }
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 25px rgba(0,0,0,.15);
+    }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+    .btn-primary:hover {
+        background-color: #2e59d9;
+        border-color: #2e59d9;
+    }
+
+.btn-success {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+    .btn-success:hover {
+        background-color: #17a673;
+        border-color: #17a673;
+    }
+
+.table {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+
+    .table thead {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .table th, .table td {
+        border: none;
+        padding: 12px 15px;
+    }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.02);
+}
+
+.dashboard-card {
+    border-left: 4px solid var(--primary-color);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .dashboard-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .dashboard-card .card-title {
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        color: #858796;
+    }
+
+    .dashboard-card .card-text {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+.dashboard-icon {
+    font-size: 2rem;
+    opacity: 0.3;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.modal-content {
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.2);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+/* Animations */
+.animate__animated {
+    animation-duration: 0.8s;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #2e59d9;
+    }
+.dashboard-card {
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,.1);
+    }
+
+    .dashboard-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .dashboard-card .card-title {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard-card .card-text {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+.dashboard-card {
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,.1);
+    }
+
+    .dashboard-card .card-body {
+        padding: 1.5rem;
+        position: relative;
+    }
+
+    .dashboard-card .card-title {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #555;
+        text-transform: uppercase;
+    }
+
+    .dashboard-card .card-text {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .dashboard-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+    }
+
+    .dashboard-card.total-vehicles::before {
+        background-color: #3498db;
+    }
+
+    .dashboard-card.available-vehicles::before {
+        background-color: #2ecc71;
+    }
+
+    .dashboard-card.vehicles-maintenance::before {
+        background-color: #f1c40f;
+    }
+
+    .dashboard-card.active-shipments::before {
+        background-color: #e74c3c;
+    }
+
+    .dashboard-card.completed-shipments::before {
+        background-color: #9b59b6;
+    }
+
+    .dashboard-card.pending-maintenance::before {
+        background-color: #e67e22;
+    }
+
+    .dashboard-card.ongoing-maintenance::before {
+        background-color: #1abc9c;
+    }
+
+    .dashboard-card.total-customers::before {
+        background-color: #34495e;
+    }
+
+    .dashboard-card.total-drivers::before {
+        background-color: #16a085;
+    }
+
+    .dashboard-card.total-revenue::before {
+        background-color: #2980b9;
+    }
+
+    .dashboard-card.avg-shipment-price::before {
+        background-color: #8e44ad;
+    }
+
+    .dashboard-card.overdue-maintenance::before {
+        background-color: #c0392b;
+    }
+
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}

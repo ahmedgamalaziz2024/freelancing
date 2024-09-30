@@ -1,0 +1,36 @@
+﻿@model List<MG.FleetManagementSystem.Web.Models.MaintenanceOrder>
+
+@{
+    ViewData["Title"] = "Create Proactive Maintenance Orders";
+}
+
+<h2>Create Proactive Maintenance Orders</h2>
+
+<form asp-action="ConfirmProactive" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Vehicle</th>
+                <th>Description</th>
+                <th>Estimated Start Date</th>
+                <th>Estimated Completion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectedVehicleIds" value="@Model[i].VehicleId" />
+                    </td>
+                    <td>@Model[i].VehicleId</td>
+                    <td>@Model[i].Description</td>
+                    <td>@Model[i].StartDate.ToShortDateString()</td>
+                    <td>@Model[i].EstimatedCompletionDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Create Selected Orders</button>
+</form>

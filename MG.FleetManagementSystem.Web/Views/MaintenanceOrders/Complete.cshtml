@@ -1,0 +1,47 @@
+﻿@model MG.FleetManagementSystem.Web.Models.MaintenanceOrder
+
+@{
+    ViewData["Title"] = "Complete Maintenance Order";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Complete Maintenance Order</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Order Details</h5>
+            <dl class="row">
+                <dt class="col-sm-3">Vehicle:</dt>
+                <dd class="col-sm-9">@Model.VehicleId</dd>
+                <dt class="col-sm-3">Type:</dt>
+                <dd class="col-sm-9">@Model.Type</dd>
+                <dt class="col-sm-3">Description:</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+                <dt class="col-sm-3">Start Date:</dt>
+                <dd class="col-sm-9">@Model.StartDate.ToShortDateString()</dd>
+            </dl>
+
+            <form asp-action="Complete">
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label asp-for="CompletionNotes" class="form-label">Completion Notes</label>
+                    <textarea asp-for="CompletionNotes" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="CompletionNotes" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ActualCost" class="form-label">Actual Cost</label>
+                    <input asp-for="ActualCost" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="ActualCost" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Complete Order</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

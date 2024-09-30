@@ -1,0 +1,46 @@
+﻿@model MG.FleetManagementSystem.Web.Models.ShipmentOrder
+
+<div class="modal-header">
+    <h5 class="modal-title">Shipment Order Details</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <dl class="row">
+        <dt class="col-sm-4">Order ID</dt>
+        <dd class="col-sm-8">@Model.Id</dd>
+
+        <dt class="col-sm-4">Customer</dt>
+        <dd class="col-sm-8">@ViewBag.CustomerName</dd>
+
+        <dt class="col-sm-4">Vehicle</dt>
+        <dd class="col-sm-8">@ViewBag.VehicleLicensePlate</dd>
+
+        <dt class="col-sm-4">Driver</dt>
+        <dd class="col-sm-8">@ViewBag.DriverName</dd>
+
+        <dt class="col-sm-4">Route</dt>
+        <dd class="col-sm-8">@ViewBag.RouteName</dd>
+
+        <dt class="col-sm-4">Status</dt>
+        <dd class="col-sm-8">@Model.Status</dd>
+
+        <dt class="col-sm-4">Start Date</dt>
+        <dd class="col-sm-8">@Model.StartDate.ToString("g")</dd>
+
+        <dt class="col-sm-4">End Date</dt>
+        <dd class="col-sm-8">@Model.EndDate.ToString("g")</dd>
+
+        <dt class="col-sm-4">Price</dt>
+        <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+
+        <dt class="col-sm-4">Actual Start Odometer</dt>
+        <dd class="col-sm-8">@Model.ActualStartOdometer</dd>
+
+        <dt class="col-sm-4">Actual End Odometer</dt>
+        <dd class="col-sm-8">@Model.ActualEndOdometer</dd>
+    </dl>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+</div>

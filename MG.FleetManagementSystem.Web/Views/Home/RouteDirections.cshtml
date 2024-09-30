@@ -1,0 +1,120 @@
+﻿@model List<MG.FleetManagementSystem.Web.Models.Route>
+
+@{
+    ViewData["Title"] = "Route Directions";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Route Directions</h1>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <select id="routeSelect" class="form-select">
+                <option value="">Select a route</option>
+                @foreach (var route in Model)
+                {
+                    <option value="@route.Id">@route.Name (@route.StartLocation to @route.EndLocation)</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div id="routeMap" style="height: 600px;"></div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script>
+        var map = L.map('routeMap').setView([26.8206, 30.8025], 5); // Centered on Egypt, zoomed out a bit
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var routes = @Html.Raw(Json.Serialize(Model));
+        var routingControl;
+        var truckMarker;
+
+        // Define city coordinates
+        var cityCoordinates = {
+            "Cairo": [30.0444, 31.2357],
+            "Alexandria": [31.2001, 29.9187],
+            "Aswan": [24.0889, 32.8998],
+            "Sohag": [26.5590, 31.6957]
+        };
+
+        function updateMap(routeId) {
+            var route = routes.find(r => r.id == routeId);
+            if (!route) return;
+
+            var startCoords = cityCoordinates[route.startLocation];
+            var endCoords = cityCoordinates[route.endLocation];
+
+            // Remove existing routing control if it exists
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+
+            // Remove existing truck marker if it exists
+            if (truckMarker) {
+                map.removeLayer(truckMarker);
+            }
+
+            routingControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(startCoords[0], startCoords[1]),
+                    L.latLng(endCoords[0], endCoords[1])
+                ],
+                routeWhileDragging: true,
+                lineOptions: {
+                    styles: [{ color: 'blue', opacity: 0.6, weight: 4 }]
+                },
+                show: false, // Hide the text directions panel
+                addWaypoints: false // Disable adding new waypoints
+            }).addTo(map);
+
+            routingControl.on('routesfound', function (e) {
+                var routes = e.routes;
+                var summary = routes[0].summary;
+                // Place truck icon at 1/3 of the route
+                var truck_location = Math.floor(summary.totalDistance / 3);
+
+                var coords;
+                for (var i = 0; i < routes[0].coordinates.length; i++) {
+                    if (routes[0].coordinates[i].dist >= truck_location) {
+                        coords = routes[0].coordinates[i];
+                        break;
+                    }
+                }
+
+                if (coords) {
+                    var truckIcon = L.icon({
+                        iconUrl: '/images/truck-icon.png', // Make sure this file exists in your wwwroot/images folder
+                        iconSize: [38, 38],
+                        iconAnchor: [19, 19],
+                        popupAnchor: [0, -19]
+                    });
+
+                    truckMarker = L.marker([coords.lat, coords.lng], { icon: truckIcon })
+                        .addTo(map)
+                        .bindPopup("Truck on route: " + route.name);
+                }
+            });
+
+            // Add markers for start and end locations
+            L.marker(startCoords).addTo(map).bindPopup("Start: " + route.startLocation);
+            L.marker(endCoords).addTo(map).bindPopup("End: " + route.endLocation);
+
+            // Fit the map to the route
+            var bounds = L.latLngBounds(startCoords, endCoords);
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }
+
+        // Event listener for route selection
+        document.getElementById('routeSelect').addEventListener('change', function () {
+            updateMap(this.value);
+        });
+    </script>
+}
